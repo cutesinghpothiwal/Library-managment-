@@ -1,0 +1,111 @@
+class Library():
+    
+    def __init__(self, list_of_books, library_name):
+        self.lend= {}
+        self.list_of_books= list_of_books
+        self.library_name= library_name
+    
+    #this  for loop takes all the books in the list into a dictionary and take the books as key and the item as none     
+        for books in self.list_of_books :
+            self.lend[books]= None
+        
+        
+    # the below function allows to add books in the library
+    
+    def add_books(self, book_name):
+        self.list_of_books.append(book_name)
+        self.lend[book_name]= None 
+        
+    # the below duntcion removes a book from the book list
+    
+    def remove_book(self, book_name):
+        self.list_of_books.remove(book_name)
+        self.lend.pop(book_name)   
+        
+        
+    def display_books(self):
+        for index,book in enumerate(self.list_of_books):
+            
+            print(f"{index+1}:{book}")
+            
+    
+    def lend_books(self, book, reader ):
+            
+        if book in self.list_of_books:
+            if self.lend is None :
+                self.lend[book] = reader 
+                print ("book lend")
+            else:
+                print (f"the book is lend by {reader}")
+        
+        else: print ("please enter the book name corretly")
+        
+        
+    def return_book(self, book, reader):
+        if book in self.list_of_books:
+            if self.lend[book] is not None :
+                self.lend.pop(book)
+            else:
+                print("Sorry but This book is not Lend")
+        else:
+            print("You have written wrong book name")
+            
+            
+
+def main():
+
+    list_books= ["the ghost files", "the time machine", "the yakuza", "the english patient"]
+
+    library_name = "bhilai library"
+
+    cute= Library(list_books, library_name)
+
+    print(f"Welcome to {cute.library_name}\n\n please enter 'Display' to view the lsit of books\n 'Return' to return book\n 'Add' to add books \n 'Lend' to lend books\n 'quit' to exit"  )
+    
+
+    Exit = False
+    
+    while (Exit is not True):
+        user = input("select the option:" )
+        print("\n")
+        
+        if user == 'Display':
+            cute.display_books()
+            
+        elif user == 'Add':
+            user_book= input("Enter the book name :")
+            cute.add_books(user_book)
+            
+        elif user== 'Return':
+            
+            user_name= input (" Enter your name :")
+            user_book= input("Enter the name of the book:")
+            cute.return_book(user_book, user_name)
+            
+        elif user == 'Lend':
+             
+            user_name=input("Enter your name :")
+            user_book=input("Enter the name of the book:")
+            cute.lend_books(user_book, user_name)
+        
+        
+        elif user == 'quit' :
+            Exit = True
+                    
+        else:
+            print("INVALID OPTION!!!")
+            
+
+if __name__ == "__main__" :
+ ''' this line runs the whole code in itself  '''
+main()           
+        
+                    
+        
+        
+                
+        
+        
+        
+        
+        
